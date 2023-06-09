@@ -1,0 +1,52 @@
+create table if not exists users(
+    id serial primary key ,
+    user_id varchar(50) ,
+    full_name varchar(50),
+    username varchar(30),
+    created_at timestamp default current_timestamp
+);
+
+CREATE TABLE IF NOT EXISTS employers (
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(50) UNIQUE,
+    username VARCHAR(30),
+    full_name VARCHAR(50),
+    phone VARCHAR(25)
+);
+
+CREATE TABLE IF NOT EXISTS vacancies (
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR(50),
+    category VARCHAR(100),
+    project_name VARCHAR(255),
+    info TEXT,
+    price varchar(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES employers(user_id) ON DELETE CASCADE,
+    FOREIGN KEY (category) REFERENCES jobs(name) ON DELETE CASCADE
+);
+
+create table if not exists workers(
+    id serial primary key ,
+    user_id varchar(50),
+    username varchar(30),
+    full_name varchar(50),
+    phone varchar(25),
+    job varchar(100),
+    experience varchar(30),
+    age integer,
+    portfolio varchar(255)
+);
+
+create table if not exists merchants(
+    id serial primary key ,
+    user_id varchar(50) ,
+    full_name varchar(50),
+    username varchar(30),
+    created_at timestamp default current_timestamp
+);
+
+create table if not exists jobs(
+    id serial,
+    name varchar(50) primary key
+);
