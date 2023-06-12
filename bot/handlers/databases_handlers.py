@@ -19,6 +19,7 @@ async def databases_handler(msg: types.Message):
 
 @dp.message_handler(Text(back_databses), state='*')
 async def back_handler(msg: types.Message, state: FSMContext):
+    await msg.bot.delete_message(msg.chat.id, msg.message_id-1)
     merchant = Merchants().select()
     for i in merchant:
         if i[1] == str(msg.from_user.id):
