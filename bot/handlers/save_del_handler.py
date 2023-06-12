@@ -6,7 +6,7 @@ from db.model import Workers, Employers, Vacancies
 @dp.callback_query_handler(lambda call: call.data.startswith("✅"))
 async def save_handler(call: types.CallbackQuery):
     if call.data.split("_")[1] == "Vacancies":
-        await call.bot.send_message(chat_id=-1001510721192, text=f"<b>{call.message.text}</b>", parse_mode="HTML")
+        await call.bot.send_message(chat_id=-1001396522797, text=f"<b>{call.message.text}</b>", parse_mode="HTML")
     await call.message.edit_text(text="Saqlandi✅")
 
 
