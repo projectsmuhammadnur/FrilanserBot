@@ -35,6 +35,7 @@ async def add_category_handler(call: types.CallbackQuery, state: FSMContext):
     async with state.proxy() as data:
         data["user_id"] = str(call.from_user.id)
         data['category'] = call.data
+    await call.message.delete()
     await state.set_state("add_vacancie_name")
     await call.message.answer(text="Vacansiya nomini kiriting:", reply_markup=back_button())
 
@@ -45,7 +46,7 @@ async def add_name_handler(msg: types.Message, state: FSMContext):
         data['project_name'] = msg.text
     await state.set_state("add_vacancie_info")
     await msg.answer(
-        text="Qo'shimcha malumot kiriting❗️\nMisol: Tushlik masalasi, O`zingizni shartlaringiz va boshqalar")
+        text="Qo'shimcha malumot kiriting❗️\nMisol: Tushlik masalasi, Ish joyi va boshqalar")
 
 
 @dp.message_handler(state='add_vacancie_info')
