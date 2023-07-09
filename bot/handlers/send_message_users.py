@@ -33,7 +33,8 @@ async def get_user_id_for_send_to_user(msg: Message, state: FSMContext):
     session = await msg.bot.send_message(msg.chat.id, text, 'MarkdownV2')
     for user in users:
         try:
-            await msg.copy_to(user[1], msg.caption, caption_entities=msg.caption_entities, reply_markup=msg.reply_markup)
+            await msg.copy_to(user[1], msg.caption, caption_entities=msg.caption_entities,
+                              reply_markup=msg.reply_markup)
             await sleep(0.05)
             succ += 1
         except ChatNotFound:
@@ -48,4 +49,5 @@ async def get_user_id_for_send_to_user(msg: Message, state: FSMContext):
             fail += 1
     else:
         await session.delete()
-        await msg.answer(f"Habar *{succ}*ta userga tarqatildi✅\n*{fail}*ta user botni bloklagan❌", 'MarkdownV2', reply_markup=admin_menu())
+        await msg.answer(f"Habar *{succ}*ta userga tarqatildi✅\n*{fail}*ta user botni bloklagan❌", 'MarkdownV2',
+                         reply_markup=admin_menu())
